@@ -10,7 +10,7 @@ function App() {
 
   const valentineDate = new Date(2026, 1, 14); // February 14, 2026
   const letters = [
-    { id: 1, date: new Date(2026, 1, 6), openMessage: "Read it, lovelove!", message: "My dear baby,\n\nI hope this letter finds you well. I just wanted to take a moment to tell you how much I love you and how grateful I am to have you in my life. You are the light that brightens my days and the warmth that fills my heart. I can't wait to spend many more Valentine's Days with you, creating beautiful memories together.\n\nWith all my love,\nYour Valentine 💌"},
+    { id: 1, date: new Date(2026, 1, 9), openMessage: "Read it, lovelove!", message: "My dear baby,\n\nI hope this letter finds you well. I just wanted to take a moment to tell you how much I love you and how grateful I am to have you in my life. You are the light that brightens my days and the warmth that fills my heart. I can't wait to spend many more Valentine's Days with you, creating beautiful memories together.\n\nWith all my love,\nYour Valentine 💌"},
     { id: 2, date: new Date(2026, 1, 10), openMessage: "Another one babyyy!"},
     { id: 3, date: new Date(2026, 1, 11), openMessage: "Keep going, love!"},
     { id: 4, date: new Date(2026, 1, 12), openMessage: "Almost there, my love!"},
@@ -97,7 +97,8 @@ function App() {
     <>
       <Popup isOpen={isOpen} onClose={handleOpen} message={message}/>
       <div className='w-full h-screen bg-radial-[at_50%_1%] from-[#ffffff] to-[#fdacc3] to-75% p-11'>
-        <h1 className='font-valentine text-7xl text-center text-[#651515] drop-shadow-2xl'>Countdown to Valentine's Day!</h1>
+        <h1 className='font-valentine text-7xl text-center text-[#651515] drop-shadow-2xl mt-10'>Countdown to Valentine's Day!</h1>
+        <p className='font-valentine text-center text-4xl text-[#651515] drop-shadow-2xl -mt-2'>for my baby pimmy!</p>
         {/* Sound unlock control (required once by browsers) */}
         {!soundEnabled && (
           <button
@@ -109,7 +110,7 @@ function App() {
           </button>
         )}
         {/* <img src={envelope} alt="envelope" className='drop-shadow-2xl'/> */}
-        <div className='grid grid-cols-3 gap-x-32 gap-y-16 mt-12 justify-items-center w-[75%] mx-auto'>
+        <div className='grid grid-cols-3 gap-x-32 gap-y-20 mt-20 justify-items-center w-[75%] mx-auto'>
           {letters.map((letter) => {
             if (letter.date.getTime() === valentineDate.getTime() && currentDate.getTime() >= valentineDate.getTime()) {
               return (
@@ -123,14 +124,14 @@ function App() {
             else if (currentDate.getTime() >= letter.date.getTime()) {
               return <div>
                 <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer' onMouseEnter={playPop} onFocus={playPop} onClick={() => handleOpen(letter.message)}/>
-                <p className='text-center text-lg text-[#651515] mt-1 font-sans font-bold'>{letter.openMessage}</p>
+                <p className='text-center text-lg text-[#651515] mt-2 font-sans font-bold'>{letter.openMessage}</p>
               </div>
             }
 
             else {
               return <div>
                 <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer grayscale' onMouseEnter={playPop} onFocus={playPop}/>
-                <p className='text-center text-lg text-[#651515] mt-1 font-sans font-bold'>{formatDate(letter.date)}</p>
+                <p className='text-center text-lg text-[#651515] mt-2 font-sans font-bold'>{formatDate(letter.date)}</p>
               </div>
             }
           })}
