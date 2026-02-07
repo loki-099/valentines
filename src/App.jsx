@@ -10,7 +10,7 @@ function App() {
 
   const valentineDate = new Date(2026, 1, 14); // February 14, 2026
   const letters = [
-    { id: 1, date: new Date(2026, 1, 6), openMessage: "Read it, lovelove!"},
+    { id: 1, date: new Date(2026, 1, 6), openMessage: "Read it, lovelove!", message: "My dear baby,\n\nI hope this letter finds you well. I just wanted to take a moment to tell you how much I love you and how grateful I am to have you in my life. You are the light that brightens my days and the warmth that fills my heart. I can't wait to spend many more Valentine's Days with you, creating beautiful memories together.\n\nWith all my love,\nYour Valentine 💌"},
     { id: 2, date: new Date(2026, 1, 10), openMessage: "Another one babyyy!"},
     { id: 3, date: new Date(2026, 1, 11), openMessage: "Keep going, love!"},
     { id: 4, date: new Date(2026, 1, 12), openMessage: "Almost there, my love!"},
@@ -24,9 +24,14 @@ function App() {
   const audioBufferRef = useRef(null);
   const audioRef = useRef(null);
 
+  const [message, setMessage] = useState("This is the message!");
+
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpen = (letter_message) => {
+    if (isOpen == false) {
+      setMessage(letter_message);
+    }
     setIsOpen(isOpen => !isOpen);
   }
 
@@ -90,7 +95,7 @@ function App() {
 
   return (
     <>
-      <Popup isOpen={isOpen} onClose={handleOpen}/>
+      <Popup isOpen={isOpen} onClose={handleOpen} message={message}/>
       <div className='w-full h-screen bg-radial-[at_50%_1%] from-[#ffffff] to-[#fdacc3] to-75% p-11'>
         <h1 className='font-valentine text-7xl text-center text-[#651515] drop-shadow-2xl'>Countdown to Valentine's Day!</h1>
         {/* Sound unlock control (required once by browsers) */}
@@ -109,7 +114,7 @@ function App() {
             if (letter.date.getTime() === valentineDate.getTime() && currentDate.getTime() >= valentineDate.getTime()) {
               return (
                 <div>
-                  <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer' onMouseEnter={playPop} onFocus={playPop} onClick={handleOpen}/>
+                  <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer' onMouseEnter={playPop} onFocus={playPop} onClick={() => handleOpen(letter.message)}/>
                   <p className='text-center text-lg text-[#dc0707] mt-2 font-sans font-bold animate-bounce leading-5'>{letter.openMessage}</p>
                 </div>
               )
@@ -117,14 +122,14 @@ function App() {
 
             else if (currentDate.getTime() >= letter.date.getTime()) {
               return <div>
-                <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer' onMouseEnter={playPop} onFocus={playPop} onClick={handleOpen}/>
+                <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer' onMouseEnter={playPop} onFocus={playPop} onClick={() => handleOpen(letter.message)}/>
                 <p className='text-center text-lg text-[#651515] mt-1 font-sans font-bold'>{letter.openMessage}</p>
               </div>
             }
 
             else {
               return <div>
-                <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer grayscale' onMouseEnter={playPop} onFocus={playPop} onClick={handleOpen}/>
+                <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer grayscale' onMouseEnter={playPop} onFocus={playPop} onClick={() => handleOpen(letter.message)}/>
                 <p className='text-center text-lg text-[#651515] mt-1 font-sans font-bold'>{formatDate(letter.date)}</p>
               </div>
             }
