@@ -129,7 +129,7 @@ function App() {
 
             else {
               return <div>
-                <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer grayscale' onMouseEnter={playPop} onFocus={playPop} onClick={() => handleOpen(letter.message)}/>
+                <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer grayscale' onMouseEnter={playPop} onFocus={playPop}/>
                 <p className='text-center text-lg text-[#651515] mt-1 font-sans font-bold'>{formatDate(letter.date)}</p>
               </div>
             }
