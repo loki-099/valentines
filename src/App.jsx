@@ -10,7 +10,7 @@ function App() {
 
   const valentineDate = new Date(2026, 1, 14); // February 14, 2026
   const letters = [
-    { id: 1, date: new Date(2026, 1, 9), openMessage: "Read it, lovelove!", message: "My dear baby,\n\nI hope this letter finds you well. I just wanted to take a moment to tell you how much I love you and how grateful I am to have you in my life. You are the light that brightens my days and the warmth that fills my heart. I can't wait to spend many more Valentine's Days with you, creating beautiful memories together.\n\nWith all my love,\nYour Valentine 💌"},
+    { id: 1, date: new Date(2026, 1, 8), openMessage: "Read it, lovelove!", message: "My dear lovelove,\n\nHi lovelove! This is my surprise for you. Well hindi na siya na-present sayo in a surprising way. Let's just say na lang na ito yung gift ko sayo po! This website is a countdown for your most favorite holiday in a year, Valentine's Day! Because you are a lovely girlie! I will put my messages here para sayo po since you love words of affirmation kaya naman there are a total of 6 letters for you! I just want you to know po na mahal na mahal kita. Despite of my busy days, I still yearn for your presence. Lalo na ngayon, isisingit ko pa rin ito because I love you that much! Para din naman po ito sa atin. I hope din po na I am giving you love that you want and need. Don't worry if you find this letter bitin, there are still more coming!\n\nAt dahil diyan po, will you be my valentine, my pretty baby?\n\nYour love,\nLuis💌"},
     { id: 2, date: new Date(2026, 1, 10), openMessage: "Another one babyyy!"},
     { id: 3, date: new Date(2026, 1, 11), openMessage: "Keep going, love!"},
     { id: 4, date: new Date(2026, 1, 12), openMessage: "Almost there, my love!"},
@@ -96,8 +96,8 @@ function App() {
   return (
     <>
       <Popup isOpen={isOpen} onClose={handleOpen} message={message}/>
-      <div className='w-full h-screen bg-radial-[at_50%_1%] from-[#ffffff] to-[#fdacc3] to-75% p-11'>
-        <h1 className='font-valentine text-7xl text-center text-[#651515] drop-shadow-2xl mt-10'>Countdown to Valentine's Day!</h1>
+      <div className='w-full h-screen bg-radial-[at_50%_1%] from-[#ffffff] to-[#fdacc3] to-75% py-10 sm:p-11'>
+        <h1 className='font-valentine text-7xl text-center leading-14 text-[#651515] drop-shadow-2xl sm:mt-10'>Countdown to Valentine's Day!</h1>
         <p className='font-valentine text-center text-4xl text-[#651515] drop-shadow-2xl -mt-2'>for my baby pimmy!</p>
         {/* Sound unlock control (required once by browsers) */}
         {!soundEnabled && (
@@ -110,11 +110,11 @@ function App() {
           </button>
         )}
         {/* <img src={envelope} alt="envelope" className='drop-shadow-2xl'/> */}
-        <div className='grid grid-cols-3 gap-x-32 gap-y-20 mt-20 justify-items-center w-[75%] mx-auto'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-10 sm:gap-x-32 sm:gap-y-20 mt-10 sm:mt-20 justify-items-center w-[75%] mx-auto'>
           {letters.map((letter) => {
             if (letter.date.getTime() === valentineDate.getTime() && currentDate.getTime() >= valentineDate.getTime()) {
               return (
-                <div>
+                <div className='flex flex-col items-center'>
                   <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer' onMouseEnter={playPop} onFocus={playPop} onClick={() => handleOpen(letter.message)}/>
                   <p className='text-center text-lg text-[#dc0707] mt-2 font-sans font-bold animate-bounce leading-5'>{letter.openMessage}</p>
                 </div>
@@ -122,17 +122,17 @@ function App() {
             }
 
             else if (currentDate.getTime() >= letter.date.getTime()) {
-              return <div>
+              return <div className='flex flex-col items-center'>
                 <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer' onMouseEnter={playPop} onFocus={playPop} onClick={() => handleOpen(letter.message)}/>
-                <p className='text-center text-lg text-[#651515] mt-2 font-sans font-bold'>{letter.openMessage}</p>
+                <p className='text-center text-lg text-[#651515] mt-2 font-sans font-bold leading-5'>{letter.openMessage}</p>
               </div>
             }
 
             else {
-              return <div>
+              return <ddiv className='flex flex-col items-center'>
                 <img src={envelope} alt="envelope" className='drop-shadow-2xl w-56 animate-float hover:scale-110 transition-all cursor-pointer grayscale' onMouseEnter={playPop} onFocus={playPop}/>
-                <p className='text-center text-lg text-[#651515] mt-2 font-sans font-bold'>{formatDate(letter.date)}</p>
-              </div>
+                <p className='text-center text-lg text-[#651515] mt-2 font-sans font-bold leading-5'>{formatDate(letter.date)}</p>
+              </ddiv>
             }
           })}
 
