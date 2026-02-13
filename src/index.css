@@ -1,19 +1,21 @@
 @font-face {
-  font-family: "Valentine"; /* Choose a name for your font */
-  src: url("./fonts/Valentine.otf"); /* Specify the correct path and format */
+  font-family: 'Valentine'; /* Choose a name for your font */
+  src: url('./fonts/Valentine.otf'); /* Specify the correct path and format */
   font-weight: normal; /* Define the font weight (e.g., normal, bold, 400, 700) */
   font-style: normal; /* Define the font style (e.g., normal, italic) */
 }
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-valentine: "Valentine", cursive; /* Define a custom property for your font */
+  --font-valentine:
+    'Valentine', cursive; /* Define a custom property for your font */
 
   --animate-float: float 5s ease-in-out infinite;
-  
+
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
@@ -21,3 +23,34 @@
     }
   }
 }
+
+@keyframes verticalScrollDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes verticalScrollUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-vertical-scroll-down {
+  display: flex;
+  flex-direction: column;
+  animation: verticalScrollDown 50s linear infinite;
+}
+
+.animate-vertical-scroll-up {
+  display: flex;
+  flex-direction: column;
+  animation: verticalScrollUp 50s linear infinite;
+}
+
